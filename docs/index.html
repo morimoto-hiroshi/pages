@@ -12,100 +12,100 @@
     </head>
     <body>
         <h1>GitHub Pages を使ってみる</h1>
+        <section>
+            <h2>gitコマンド覚え書き</h2>
+            <h3>グローバルプロフィール設定</h3>
+            <blockquote>
+                git config --global http.proxy "http://proxy-host:8080"
+                git config --global https.proxy "http://proxy-host:8080"
+                git config --global user.name "Taro MOMO"
+                git config --global user.email taro.momo@gmail.com
 
-        <h2>gitコマンド覚書き</h2>
+                git config -list --global    //確認
 
-        <h3>グローバルプロフィール設定</h3>
-        <blockquote>
-            git config --global http.proxy "http://proxy-host:8080"
-            git config --global https.proxy "http://proxy-host:8080"
-            git config --global user.name "Taro MOMO"
-            git config --global user.email taro.momo@gmail.com
+                type \Users\Taro\.gitconfig  //保存先(Windows)
+            </blockquote>
 
-            git config -list --global    //確認
+            <h3>ローカルプロフィール設定</h3>
+            <blockquote>
+                git config --local user.name "MoMoTaRo"
+                git config --local user.email "momotaro@icloud.com"
+                git config --local core.autocrlf true
 
-            type \Users\Taro\.gitconfig  //保存先(Windows)
-        </blockquote>
+                git config --list --local  //確認
 
-        <h3>ローカルプロフィール設定</h3>
-        <blockquote>
-            git config --local user.name "MoMoTaRo"
-            git config --local user.email "momotaro@icloud.com"
-            git config --local core.autocrlf true
+                type .git\config           //保存先(Windows)
+            </blockquote>
 
-            git config --list --local  //確認
+            <h3>状態確認</h3>
+            <blockquote>
+                git status
+                git branch     //ブランチ一覧
+                git branch -a  //リモートブランチも
+            </blockquote>
 
-            type .git\config           //保存先(Windows)
-        </blockquote>
+            <h3>ブランチ作成・変更・削除</h3>
+            <blockquote>
+                git branch foo                //作成
+                git checkout foo              //変更
+                git checkout -b foo           //作成と変更
+                git branch -d foo             //削除
+                git push --delete origin foo  //リモートブランチの削除
+            </blockquote>
 
-        <h3>状態確認</h3>
-        <blockquote>
-            git status
-            git branch     //ブランチ一覧
-            git branch -a  //リモートブランチも
-        </blockquote>
+            <h3>ステージング、コミット</h3>
+            <blockquote>
+                git checkout .                       //ファイル編集・削除のアンドゥ（※追加は残る）
+                git add .                            //ファイル追加・編集・削除の反映
+                git reset head                       //ファイル追加・編集・削除の反映のアンドゥ
+                git commit -a -m "comment"           //コミット
+                git commit --amend -m "new comment"  //直近のコミットメッセージの変更
+                git reset --soft HEAD~1              //コミットのアンドゥ（作業ファイルは不変）
+                git reset --hard HEAD~1              //コミットのアンドゥ（作業ファイルも変更）
+                git push -f origin HEAD~1:foo        //pushのアンドゥ（ローカルより1つ前のコミットに戻す）
+                git mv oldName newName               //リネーム
+            </blockquote>
 
-        <h3>ブランチ作成・変更・削除</h3>
-        <blockquote>
-            git branch foo                //作成
-            git checkout foo              //変更
-            git checkout -b foo           //作成と変更
-            git branch -d foo             //削除
-            git push --delete origin foo  //リモートブランチの削除
-        </blockquote>
+            <h3>リモートと同期</h3>
+            <blockquote>
+                git push origin foo                 //リモートブランチに反映
+                git push --set-upstream origin foo  //リモートブランチに反映・関連付け
+                git push                            //関連付けされたリモートブランチに反映
+                git pull                            //関連付けされたリモートブランチを反映
+            </blockquote>
 
-        <h3>ステージング、コミット</h3>
-        <blockquote>
-            git checkout .                       //ファイル編集・削除のアンドゥ（※追加は残る）
-            git add .                            //ファイル追加・編集・削除の反映
-            git reset head                       //ファイル追加・編集・削除の反映のアンドゥ
-            git commit -a -m "comment"           //コミット
-            git commit --amend -m "new comment"  //直近のコミットメッセージの変更
-            git reset --soft HEAD~1              //コミットのアンドゥ（作業ファイルは不変）
-            git reset --hard HEAD~1              //コミットのアンドゥ（作業ファイルも変更）
-            git push -f origin HEAD~1:foo        //pushのアンドゥ（ローカルより1つ前のコミットに戻す）
-            git mv oldName newName               //リネーム
-        </blockquote>
+            <h3>マージ</h3>
+            <blockquote>
+                git diff --name-only foo  //カレントブランチと指定ブランチの差分を確認
+                git merge foo             //カレントブランチに指定ブランチの差分をマージ
+                git merge origin/foo      //カレントブランチに指定リモートブランチの差分をマージ
+            </blockquote>
 
-        <h3>リモートと同期</h3>
-        <blockquote>
-            git push origin foo                 //リモートブランチに反映
-            git push --set-upstream origin foo  //リモートブランチに反映・関連付け
-            git push                            //関連付けされたリモートブランチに反映
-            git pull                            //関連付けされたリモートブランチを反映
-        </blockquote>
+            <h3>リベース</h3>
+            <blockquote>
+                git rebase origin/foo  //カレントブランチを指定ブランチから派生した状態にする
+                //                       カレントブランチの変更は保持し、指定ブランチの差分はマージ
+            </blockquote>
 
-        <h3>マージ</h3>
-        <blockquote>
-            git diff --name-only foo  //カレントブランチと指定ブランチの差分を確認
-            git merge foo             //カレントブランチに指定ブランチの差分をマージ
-            git merge origin/foo      //カレントブランチに指定リモートブランチの差分をマージ
-        </blockquote>
+            <h3>自分の変更したファイル一覧</h3>
+            <blockquote>
+                git log --author=username --after="2017-04-01" --before="2017-09-30" --no-merges --name-only --pretty=format:""
+                git log --author=username --after="2017-04-01" --before="2017-09-30" --no-merges --name-status --pretty=format:"%cn %cd" --date=iso
+                git log --author=username --after="2017-04-01" --before="2017-09-30" --no-merges --numstat --pretty=format:"%cn %cd" --date=iso
+            </blockquote>
 
-        <h3>リベース</h3>
-        <blockquote>
-            git rebase origin/foo  //カレントブランチを指定ブランチから派生した状態にする
-            //カレントブランチの変更は保持し、指定ブランチの差分はマージ
-        </blockquote>
+            <h3>差分ファイルをアーカイブ</h3>
+            <blockquote>
+                git diff --name-only --diff-filter=d foo                                //変更ファイル名(削除除く)を一覧。
+                git archive HEAD `git diff --name-only --diff-filter=d foo` -o foo.zip  //変更ファイルをzip。
 
-        <h3>自分の変更したファイル一覧</h3>
-        <blockquote>
-            git log --author=username --after="2017-04-01" --before="2017-09-30" --no-merges --name-only --pretty=format:""
-            git log --author=username --after="2017-04-01" --before="2017-09-30" --no-merges --name-status --pretty=format:"%cn %cd" --date=iso
-            git log --author=username --after="2017-04-01" --before="2017-09-30" --no-merges --numstat --pretty=format:"%cn %cd" --date=iso
-        </blockquote>
-
-        <h3>差分ファイルをアーカイブ</h3>
-        <blockquote>
-            git diff --name-only --diff-filter=d foo                                //変更ファイル名(削除除く)を一覧。
-            git archive HEAD `git diff --name-only --diff-filter=d foo` -o foo.zip  //変更ファイルをzip。
-
-            //windowsでは``が使えないのでバッチを作る
-            setlocal ENABLEDELAYEDEXPANSION
-            set LIST=
-            for /f "usebackq" %%A in (`git diff --name-only --diff-filter=d foo`) do set LIST=!LIST! %%A
-            git archive --format=zip HEAD -o out.zip %LIST%
-            endlocal
-        </blockquote>
+                //windowsでは``が使えないのでバッチを作る
+                setlocal ENABLEDELAYEDEXPANSION
+                set LIST=
+                for /f "usebackq" %%A in (`git diff --name-only --diff-filter=d foo`) do set LIST=!LIST! %%A
+                git archive --format=zip HEAD -o out.zip %LIST%
+                endlocal
+            </blockquote>
+        </section>
     </body>
 </html>
