@@ -87,6 +87,36 @@
                 //                       カレントブランチの変更は保持し、指定ブランチの差分はマージ
             </blockquote>
 
+            <h3>ローカルプロジェクトをgithubにアップロード</h3>
+            <blockquote>
+                //GitHubでリポジトリ作成 https://github.com/
+                //※このとき [Add a README file] はチェックしない。リモートにファイルが出来るとpushで衝突してしまう。
+
+                //ローカルリポジトリを作成
+                cd my-project
+                git init
+
+                //このリポジトリ用にプロフィールを使い分ける
+                git config --local user.name "MoMoTaRo"
+                git config --local user.email "momotaro@icloud.com"
+                git config --local core.autocrlf true
+                git config --list --local  //確認
+
+                //ステージングとコミット
+                //※の前に、アップしないファイルがある場合は.gitignoreがあることを確認。
+                git add .
+                git commit -m "first commit"
+
+                //ブランチ名を変更（2020/10以降GitHubのデフォルトブランチ名がmainに変わったので合わせる。）
+                git branch -M main
+                git branch  //確認
+
+                //ローカルとリモートを紐付け
+                git remote add origin https://github.com/momotaro/my-project
+                git config --get remote.origin.url  //確認
+                git push -u origin main  //アップロード
+            </blockquote>
+
             <h3>自分の変更したファイル一覧</h3>
             <blockquote>
                 git log --author=username --after="2017-04-01" --before="2017-09-30" --no-merges --name-only --pretty=format:""
