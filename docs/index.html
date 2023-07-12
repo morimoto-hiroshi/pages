@@ -46,11 +46,11 @@
 
             <h3>ブランチ作成・変更・削除</h3>
             <blockquote>
-                git branch foo                //作成
-                git checkout foo              //変更
-                git checkout -b foo           //作成と変更
-                git branch -d foo             //削除
-                git push --delete origin foo  //リモートブランチの削除
+                git branch my-branch                //作成
+                git checkout my-branch              //変更
+                git checkout -b my-branch           //作成と変更
+                git branch -d my-branch             //削除
+                git push --delete origin my-branch  //リモートブランチの削除
             </blockquote>
 
             <h3>ステージング、コミット</h3>
@@ -62,29 +62,29 @@
                 git commit --amend -m "new comment"  //直近のコミットメッセージの変更
                 git reset --soft HEAD~1              //コミットのアンドゥ（作業ファイルは不変）
                 git reset --hard HEAD~1              //コミットのアンドゥ（作業ファイルも変更）
-                git push -f origin HEAD~1:foo        //pushのアンドゥ（ローカルより1つ前のコミットに戻す）
+                git push -f origin HEAD~1:my-branch  //pushのアンドゥ（ローカルより1つ前のコミットに戻す）
                 git mv oldName newName               //リネーム
             </blockquote>
 
             <h3>リモートと同期</h3>
             <blockquote>
-                git push origin foo                 //リモートブランチに反映
-                git push --set-upstream origin foo  //リモートブランチに反映・関連付け
-                git push                            //関連付けされたリモートブランチに反映
-                git pull                            //関連付けされたリモートブランチを反映
+                git push origin my-branch                 //リモートブランチに反映
+                git push --set-upstream origin my-branch  //リモートブランチに反映・関連付け
+                git push                                  //関連付けされたリモートブランチに反映
+                git pull                                  //関連付けされたリモートブランチを反映
             </blockquote>
 
             <h3>マージ</h3>
             <blockquote>
-                git diff --name-only foo  //カレントブランチと指定ブランチの差分を確認
-                git merge foo             //カレントブランチに指定ブランチの差分をマージ
-                git merge origin/foo      //カレントブランチに指定リモートブランチの差分をマージ
+                git diff --name-only my-branch  //カレントブランチと指定ブランチの差分を確認
+                git merge my-branch             //カレントブランチに指定ブランチの差分をマージ
+                git merge origin/my-branch      //カレントブランチに指定リモートブランチの差分をマージ
             </blockquote>
 
             <h3>リベース</h3>
             <blockquote>
-                git rebase origin/foo  //カレントブランチを指定ブランチから派生した状態にする
-                //                       カレントブランチの変更は保持し、指定ブランチの差分はマージ
+                git rebase origin/my-branch  //カレントブランチを指定ブランチから派生した状態にする
+                //                             カレントブランチの変更は保持し、指定ブランチの差分はマージ
             </blockquote>
 
             <h3>ローカルプロジェクトをgithubにアップロード</h3>
@@ -126,13 +126,13 @@
 
             <h3>差分ファイルをアーカイブ</h3>
             <blockquote>
-                git diff --name-only --diff-filter=d foo                                //変更ファイル名(削除除く)を一覧。
-                git archive HEAD `git diff --name-only --diff-filter=d foo` -o foo.zip  //変更ファイルをzip。
+                git diff --name-only --diff-filter=d my-branch                                      //変更ファイル名(削除除く)を一覧。
+                git archive HEAD `git diff --name-only --diff-filter=d my-branch` -o my-branch.zip  //変更ファイルをzip。
 
                 //windowsでは``が使えないのでバッチを作る
                 setlocal ENABLEDELAYEDEXPANSION
                 set LIST=
-                for /f "usebackq" %%A in (`git diff --name-only --diff-filter=d foo`) do set LIST=!LIST! %%A
+                for /f "usebackq" %%A in (`git diff --name-only --diff-filter=d my-branch`) do set LIST=!LIST! %%A
                 git archive --format=zip HEAD -o out.zip %LIST%
                 endlocal
             </blockquote>
