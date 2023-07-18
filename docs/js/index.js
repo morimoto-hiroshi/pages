@@ -7,3 +7,5 @@ window.onload = () => {
         ele.innerText = ele.innerText.replace(/^\n/, '').split('\n').map(line => line.replace(/^\s+/, '')).join('\n');
     });
 }
+
+//mainで１行追加
