@@ -10,3 +10,4 @@ window.onload = () => {
 
 //mainで１行追加
 //mainでもう１行追加
+//mainでさらに１行追加
