@@ -144,6 +144,14 @@
                 git archive --format=zip HEAD -o out.zip %LIST%
                 endlocal
             </blockquote>
+            
+            <h3>ログ</h3>
+            <blockquote>
+                git log -n             //n件だけ
+                git log -1 --stat      //変更行数付き
+                git log -1 -p          //diff付き
+                git --no-pager -1 --p  //ページャなし
+            </blockquote>
         </section>
     </body>
 </html>
