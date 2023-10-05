@@ -148,9 +148,24 @@
             <h3>ログ</h3>
             <blockquote>
                 git log -n             //n件だけ
-                git log -1 --stat      //変更行数付き
+                git log -1 --stat      //変更ファイルを表示
                 git log -1 -p          //diff付き
                 git --no-pager -1 --p  //ページャなし
+            </blockquote>
+            
+            <h3>隠す</h3>
+            <blockquote>
+                git stash                 //ステージングされたファイルを隠す
+                git stash   -u            //addしてないファイルも隠す
+                git stash save "message"  //メッセージ付きで隠す
+                git stash pop             //直近のstashを戻す（stashから削除）
+                git stash apply           //直近のstashを戻す（stashに残す）
+                git stash pop stash@{2}   //任意のstashを戻す
+                git stash list            //一覧
+                git stash show            //変更ファイルを表示
+                git stash show -p         //差分を表示(p:patch)
+                git stash show stash@{2}  //任意のstashを表示
+                git stash clear
             </blockquote>
         </section>
     </body>
